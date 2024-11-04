@@ -1,0 +1,16 @@
+<div class="container mx-auto p-6">
+    <h1 class="text-2xl font-bold mb-4">Lista Samochodów</h1>
+    <form (ngSubmit)="addCar()" class="mb-4">
+        <input [(ngModel)]="newCar" name="carName" placeholder="Wprowadź nazwę samochodu" required
+            class="px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" />
+        <button type="submit" class="ml-4 bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600">Dodaj
+            Samochód</button>
+    </form>
+
+    <ul class="space-y-2">
+        <li *ngFor="let car of cars" class="flex justify-between items-center p-2 border border-gray-200 rounded-md">
+            {{ car }}
+            <app-car-details [car]="car"></app-car-details>
+        </li>
+    </ul>
+</div>
