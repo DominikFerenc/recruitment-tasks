@@ -1,0 +1,17 @@
+<div class="flex justify-center items-center min-h-screen bg-gray-100">
+    <div class="container max-w-md mx-auto p-6 bg-white rounded-lg shadow-lg">
+        <h1 class="text-3xl font-bold mb-4 text-center">{{ pokemon?.name | titlecase }}</h1>
+        <div class="flex justify-center">
+            <img [src]="pokemon?.sprites.front_default" alt="{{ pokemon?.name }}" class="w-1/2">
+        </div>
+        <h2 class="text-xl mt-6 text-center font-semibold">Umiejętności:</h2>
+        <ul class="text-center">
+            <li *ngFor="let ability of pokemon?.abilities" class="mt-2">
+                {{ ability.ability.name | titlecase }}
+            </li>
+        </ul>
+        <div class="text-center mt-6">
+            <a routerLink="/" class="text-blue-500 hover:underline">Wróć do listy</a>
+        </div>
+    </div>
+</div>
