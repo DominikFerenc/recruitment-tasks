@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="pl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Twoje Posty</title>
+  </head>
+  <body>
+    <h1>Twoje Posty</h1>
+
+    <p>Witaj, {{ request.user.username }}! Witaj ponownie!</p>
+
+    {% if posts %}
+    <ul>
+      {% for post in posts %}
+      <li>{{ post.title }} - {{ post.content }} (autor: {{ post.author }})</li>
+      {% endfor %}
+    </ul>
+    {% else %}
+    <p>Brak dostępnych postów.</p>
+    {% endif %}
+
+    <h2>Utwórz nowy post</h2>
+    <form method="POST" action="{% url 'create_post' %}">
+      {% csrf_token %} {{ form.as_p }}
+      <button type="submit">Dodaj Post</button>
+    </form>
+    <form method="POST" action="{% url 'logout' %}">
+      {% csrf_token %}
+      <button type="submit">Wyloguj się</button>
+    </form>
+  </body>
+</html>

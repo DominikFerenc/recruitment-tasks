@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="pl">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Edytuj post</title>
+  </head>
+  <body>
+    <h2>Edytuj post</h2>
+    <form method="post">
+      {% csrf_token %}
+      <label for="title">Tytuł:</label>
+      <input
+        type="text"
+        name="title"
+        id="title"
+        value="{{ entry.title }}"
+        required
+      /><br /><br />
+
+      <label for="content">Treść:</label>
+      <textarea name="content" id="content" rows="10" required>
+{{ entry.content }}</textarea
+      ><br /><br />
+
+      <button type="submit">Zaktualizuj post</button>
+    </form>
+    <p><a href="{% url 'blog-home' %}">Powrót do strony głównej</a></p>
+  </body>
+</html>
