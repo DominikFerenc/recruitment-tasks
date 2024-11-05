@@ -1,6 +1,6 @@
-from flask import Flask, jsonify, request  # Importuj request
+from flask import Flask, jsonify, request
 from flask_sqlalchemy import SQLAlchemy
-from Task import Task
+from models.task import Task
 
 
 class TaskController:
@@ -19,7 +19,7 @@ class TaskController:
         def create_task():
             data = request.get_json()
             new_task = Task(title=data["title"])
-            self.db.session.add(new_task)  # Używamy self.db
+            self.db.session.add(new_task)
             self.db.session.commit()
             return jsonify(new_task.to_dict()), 201
 
@@ -34,12 +34,12 @@ class TaskController:
             data = request.get_json()
             task.title = data["title"]
             task.completed = data.get("completed", task.completed)
-            self.db.session.commit()  # Używamy self.db
+            self.db.session.commit()
             return jsonify(task.to_dict())
 
         @self.app.route("/tasks/<int:task_id>", methods=["DELETE"])
         def delete_task(task_id):
             task = Task.query.get_or_404(task_id)
-            self.db.session.delete(task)  # Używamy self.db
+            self.db.session.delete(task)
             self.db.session.commit()
             return jsonify({"message": "Task deleted successfully"}), 204

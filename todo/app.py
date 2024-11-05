@@ -1,12 +1,12 @@
+from config.config import Config
 from controller.task_controller import TaskController
 from flask import Flask
-from Task import db
+from models.task import db
 
 
 def init_flask():
     app = Flask(__name__)
-    app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///todo.db"
-    app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
+    app.config.from_object(Config)
     db.init_app(app)
     return app
 
@@ -17,8 +17,8 @@ def init_db(app):
 
 
 app = init_flask()
-task_controller = TaskController(app, db)
 
 if __name__ == "__main__":
     init_db(app)
+    task_controller = TaskController(app, db)
     app.run(debug=True)
