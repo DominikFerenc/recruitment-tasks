@@ -1,5 +1,3 @@
-# recruitment-tasks
-
 flowchart TD
 
     A[Developer] -->|git push| B[Git Repository]
@@ -23,3 +21,4 @@ flowchart TD
         K -->|No| J
         L --> M[Monitoring & Alerts]
     end
+
